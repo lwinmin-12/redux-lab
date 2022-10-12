@@ -1,25 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+import React from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { cakeAdd, cakeRemove, toggleAction } from './reduce and store/action/CakeAction'
+const App = () => {
+  const cake = useSelector((state) => state.cake)
+  const toggle = useSelector((state)=> state.toggle)
+  const dispatch = useDispatch()
+  return (<>
+    <div>{cake}</div>
+    <button onClick={()=>cakeAdd(dispatch,10)} > add </button>
+    <button onClick={()=>cakeRemove(dispatch,20)} > remove </button>
+    <div>
+      {toggle==true && <p>Ok Na Sa</p>}
+    <button onClick={()=>toggleAction(dispatch)}>toggle</button>
     </div>
-  );
+  </>
+   
+  )
 }
 
-export default App;
+export default App
